@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 告知浏览器以最新的IE兼容模式来渲染页面 -->
+    <link rel="stylesheet" href="STYLE.css">
+    <!-- 引入外部CSS样式表，用于对页面的样式进行设置 -->
+    <script src="JavaScript.js" defer></script>
+    <!-- 引入外部JavaScript文件
+    defer：该脚本会在文档解析完成后以及DOMContentLoaded事件触发前执行，以确保脚本不会阻塞页面渲染 -->
+
+    <style>
+        /* 30_0.3🐶 */
+        .play-button {
+            width: 63px;
+            height: 63px;
+            border-radius: 50%;
+            background-color: aqua;
+            color: blue;
+            font-size: 17px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            position: fixed;
+            top: 6%;
+            right: 6%;
+            z-index: 1000;
+        }
+
+        /* 鼠标悬停时改变背景颜色 */
+        .play-button:hover {
+            background-color: rgb(153, 255, 153);
+        }
+    </style>
+
+    <title>叮铃铃～30的新年烟花</title>
+</head>
+
+<body>
+
+
+    <!-- 30_0.1🐶正居中特效文字 CSS+JS -->
+    <canvas id="canvas"></canvas>
+    <h1>30宝宝，新春快乐！</h1>
+
+
+    <!-- 30_0.2🐶【参考注释】左上角固定位文字
+    此设计的全部代码都在这儿 -->
+    <h2 style="position: fixed; top: 6%; left: 6%; width: 200px; height: 35px; z-index: 999;
+    background: transparent; border-radius: 50%; padding: 1.0px; text-align: center;
+    text-decoration: none; line-height: 35px; font-size: 22px;
+    color: rgb(130, 230, 130); clear: both; margin:auto;">此刻烟花为你绽放</h2>
+    
+    <!-- position: fixed;🦦设置该元素的定位方式为固定位。这意味着无论页面如何滚动，该元素都会固定在浏览器窗口的某个位置
+    top: %;🦦设置元素顶部距离浏览器窗口顶部的距离占窗口高度的百分比
+    left: px;🦦设置元素左侧距离浏览器窗口左侧的像素
+    width: px;🦦设置元素宽度
+    height: px;🦦设置元素高度
+    z-index: 999;🦦设置元素的堆叠顺序。z-index值越高，元素在垂直于屏幕方向上越靠上显示，也就是会覆盖 z-index 值较低的元素。
+                    这里设置为 999，表明该元素会显示在大多数其他元素之上。
+
+    background: transparent;🦦将元素的背景设置为透明
+    border-radius: 50%;🦦把元素的边框圆角半径设置为50%。
+                          如果宽度和高度不相等，元素的实际形状会是椭圆形
+    padding: 1.0px;🦦为元素的内容周围添加 1 像素的内边距
+    text-align: center;🦦让元素内的文本水平居中显示
+
+    text-decoration: none;🦦如果元素存在链接，用于去除链接的下划线
+    line-height: px;🦦设置文本行高
+    font-size: px;🦦将文本字体大小
+
+    clear: both;🦦只用于非固定位元素：元素的左右两侧都不允许有浮动元素，元素会被强制移动到之前所有浮动元素的下方
+    margin: auto;🦦只用于非固定位元素：分别设置元素上右下左四个方向的外边距为自动计算的值 -->
+
+    <audio id="fireworksAudio" src="此刻烟花为你绽放.mp3"></audio>
+
+    <script>
+        // 获取元素
+        const fireworksText = document.querySelector('h2');
+        const fireworksAudio = document.getElementById('fireworksAudio');
+    
+        // 添加点击事件
+        fireworksText.addEventListener('click', function () {
+            if (fireworksAudio.paused) {
+                fireworksAudio.play(); // 播放音频
+                fireworksText.textContent = '烟花绽放中...';
+            } else {
+                fireworksAudio.pause(); // 暂停音频
+                fireworksAudio.currentTime = 0; // 重置播放进度
+                fireworksText.textContent = '此刻烟花为你绽放';
+            }
+        });
+    
+        // 监听音频播放结束事件
+        fireworksAudio.addEventListener('ended', function () {
+            fireworksText.textContent = '此刻烟花为你绽放'; // 恢复文字内容
+        });
+    </script>
+
+
+    <!-- 30_0.3🐶右上角烟花喜洋洋音频播放控制 HTML
+    此设计的style在标题 -->
+    <div class="play-button" id="playButton">
+        <span>点这儿BGM</span></div>
+    <audio id="bgm" preload="auto">
+        <source src="烟花喜洋洋.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // 获取圆形按钮元素
+        const playButton = document.getElementById('playButton');
+        // 获取音频元素
+        const bgm = document.getElementById('bgm');
+        // 获取按钮内的文字元素
+        const buttonText = playButton.querySelector('span');
+
+        // 为按钮添加点击事件监听器
+        playButton.addEventListener('click', function () {
+            if (bgm.paused) {
+                // 如果音频暂停，则播放音频，并更新按钮文字
+                bgm.play();
+                buttonText.textContent = '先不听BGM';
+            } else {
+                // 如果音频正在播放，则暂停音频，并更新按钮文字
+                bgm.pause();
+                buttonText.textContent = '点这儿BGM';
+            }
+        })
+    </script>
+
+
+    <!-- 30_0.4🐶右下角文字悬停
+    此设计style代码在css -->
+    <div class="button-container">
+        <button class="hover-button">网页简介</button>
+        <div class="hover-text">(*^▽^*)30新年好🎉🎉🎉<br>
+        你看到的烟花并不是录好的视频哦！<br>
+        它是以页面作为绘制的幕布，模拟黑色夜空～<br>
+        先创造随机的烟花对象，烟花升到半空中爆炸后产生粒子，<br>
+        粒子消失前会先画上一层半透明黑，使粒子呈现拖拽尾迹。<br>
+        代码会不停生成随机烟花，它们会落在幕布上的任意位置。<br>
+        形成无限循环的随机烟花！！<br><br>
+
+        <span style="color: aqua;">关于视频：<br>
+        想实现声音随烟花舞动的效果，但时间好紧张来不及做TvT<br>
+        因此视频开头的烟花和烟花绽放后“你的名字”——<br>
+        也是由另一段代码生成的随机效果^_^</span><br><br>
+
+        <span style="color: rgb(0, 255, 0);">关于配音：<br>
+        原计划模仿你喜欢的角色/风格，但有点儿没头绪🥺<br>
+        而且收到你翻牌时已经完成录制啦所以∠( ᐛ 」∠)＿<br>
+        还是小狗蛇点点上吧！</span><br><br>
+
+        我刚学前端开发没几天，超简陋哈哈哈以后会进步嘟！！<br>
+        感谢收看🎉蛇来福至🎉<br>
+        All rights reserved. © 糕剑狸
+        </div>
+    </div>
+
+
+    <!-- 30_0.5🐶左下角开启视频 CSS+JS
+    此设计代码在css和js中都有 -->
+    <video id="fullscreen-video" controls style="display: none;">
+        <source src="30开中泰.mp4" type="video/mp4">
+        您的浏览器不支持视频播放。
+        </video>
+    
+    <!-- 全屏播放按钮 -->
+    <div class="video-button-container">
+        <button class="video-button">开启视频→</button>
+        </div>
+
+
+</body>
+
+</html>

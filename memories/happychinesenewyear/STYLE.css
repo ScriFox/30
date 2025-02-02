@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/* 🦦*🦦通用选择器。选择文档中所有元素
+margin: 0;🦦padding: 0;🦦将所有元素的外边距和内边距都重置为0，以消除浏览器默认的外边距和内边距，使页面布局更加统一 */
+
+body {
+    background: rgb(0, 0, 0);
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    /* 设置页面字体族 */
+    display: flex;
+    /* 将body元素设置为弹性容器，以便使用弹性布局 */
+    width: 100%;
+    height: 100vh;
+    /* 宽度和高度都设置为视口的100%，即占满整个屏幕 */
+    justify-content: center;
+    align-items: center;
+    /* 在弹性容器中居中对齐子元素。justify-content使子元素在水平方向上居中，align-items使子元素在垂直方向上居中 */
+}
+
+h1 {
+    font-size: 10vw;
+    /* 使index.html中h1元素的字体大小设置为视口宽度的10%，字体大小会随着视口宽度的变化而变化，实现响应式设计 */
+    animation: zoom 3s linear infinite;
+    /* 应用zoom动画，持续时间3秒，动画速度为线性-linear，无限循环播放-infinite */
+}
+
+span {
+    transition: 1s linear;
+}
+
+@keyframes zoom {
+    50% {
+        transform: translateY(-5vw);
+    }
+}
+
+canvas {
+    position: fixed;
+}
+
+/* 设置按钮容器的位置 */
+.button-container {
+    position: fixed; /* 固定在页面上 */
+    bottom: 20px;    /* 距离底部 20px */
+    right: 20px;     /* 距离右侧 20px */
+}
+
+/* 按钮样式 */
+.hover-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* 绿色背景 */
+    color: white;              /* 白色文字 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* 悬停文字的样式 */
+.hover-text {
+    display: none; /* 默认隐藏 */
+    position: absolute;
+    bottom: 100%;  /* 显示在按钮上方 */
+    right: 0;
+    background-color: #333; /* 深灰色背景 */
+    color: white;          /* 白色文字 */
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap; /* 防止文字换行 */
+    margin-bottom: 10px; /* 与按钮的间距 */
+}
+
+/* 鼠标悬停时显示文字 */
+.hover-button:hover + .hover-text {
+    display: block;
+}
+
+
+
+/* 设置按钮容器的位置 */
+.button-container {
+    position: fixed; /* 固定在页面上 */
+    bottom: 20px;    /* 距离底部 20px */
+    right: 20px;     /* 距离右侧 20px */
+}
+
+/* 按钮样式 */
+.hover-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* 绿色背景 */
+    color: white;              /* 白色文字 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+/* 30_0.4🐶 */
+/* 悬停文字的样式 */
+.hover-text {
+    display: none; /* 默认隐藏 */
+    position: absolute;
+    bottom: 100%;  /* 显示在按钮上方 */
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    white-space: nowrap; /* 防止文字换行 */
+    margin-bottom: 10px; /* 与按钮的间距 */
+    z-index: 1001;
+}
+
+/* 鼠标悬停时显示文字 */
+.hover-button:hover + .hover-text {
+    display: block;
+}
+
+/* 手机端适配 */
+@media (max-width: 300px) {
+    .hover-text {
+        right: 10px; /* 距离右边 6px */
+        left: 10px; /* 距离左边 6px */
+        bottom: 100px; /* 提高文字容器位置，避免被左下角按钮遮挡 */
+        max-width: calc(100% - 20px); /* 宽度适应屏幕 */
+        width: calc(100% - 20px); /* 强制宽度适应屏幕 */
+        font-size: clamp(14px, 4vw, 18px); /* 手机端字体稍大 */
+    }
+}
+
+
+/* 30_0.5🐶 */
+/* 设置按钮容器的位置 */
+.video-button-container {
+    position: fixed; /* 固定在页面上 */
+    bottom: 6%;    /* 距离底部 20px */
+    left: 6%;       /* 水平居中 */
+}
+
+/* 按钮样式 */
+.video-button {
+    width: 130px;    /* 按钮宽度 */
+    height: 30px;   /* 按钮高度 */
+    background-color: transparent; /* 按钮背景色 */
+    color: rgb(255, 255, 255);    /* 文字颜色 */
+    border: none;
+    border-radius: 10px; /* 圆角 */
+    font-size: 22px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 背景色过渡效果 */
+}
+
+/* 鼠标悬停时按钮效果 */
+.video-button:hover {
+    background-color: rgb(132, 189, 142); /* 悬停时背景色 */
+}
